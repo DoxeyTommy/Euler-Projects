@@ -1,0 +1,40 @@
+package euler;
+
+import java.util.Arrays;
+
+public class main {
+
+	public static void main(String[] args) {
+		
+		int triangleNum = 0;
+		int counter = 0;
+		boolean finished = false;
+		while(!finished)
+		{
+			counter++;
+			triangleNum += counter;
+			if(Factor(triangleNum) > 500)
+			{
+				System.out.println(triangleNum);
+				finished = true;
+			}
+		}
+		
+	}
+
+	private static int Factor(int n) {
+		// TODO Auto-generated method stub
+		int numFactors = 0;
+		int x = (int) Math.sqrt(n);
+		for(int i = 1; i < x + 1; i++)
+		{
+			if(n % i == 0)
+				numFactors++;
+		}
+		return numFactors * 2;
+	}
+	
+	
+	//solution: 76576500
+}
+
