@@ -1,0 +1,31 @@
+package euler;
+
+import java.math.BigInteger;
+
+public class main {
+
+	public static void main(String[] args) {
+		
+		BigInteger n = BigInteger.valueOf(100);
+        int sum = 0;
+        BigInteger result = (factorial(n));
+        String digits = String.valueOf(result);
+         
+        for(int i = 0; i <= digits.length() - 1; i++)
+        {
+            Character c = new Character(digits.charAt(i));
+            sum += Integer.parseInt(c.toString());
+        }
+        System.out.println(sum);
+    }
+    public static BigInteger factorial(BigInteger n)
+    {
+            if (n.compareTo(BigInteger.ZERO) < 1)
+                return BigInteger.ONE;
+            else
+                return (n.multiply(factorial(n.subtract(BigInteger.ONE))));
+    }
+	
+	//solution: 648
+}
+
