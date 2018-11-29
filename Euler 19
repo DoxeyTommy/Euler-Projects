@@ -1,0 +1,70 @@
+package euler;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class main {
+
+	public static void main(String[] args) {
+		
+		Map<Integer, String> Dayz = new HashMap<Integer, String>();
+		Dayz.put(1, "Sun");
+		Dayz.put(2, "Mon");
+		Dayz.put(3, "Tue");
+		Dayz.put(4, "Wed");
+		Dayz.put(5, "Thurs");
+		Dayz.put(6, "Fri");
+		Dayz.put(7, "Sat");
+		
+		int numSuns = 0;
+		int count = 1;
+		
+		for(int yr = 1900; yr < 2001; yr ++)
+        {
+            for(int month = 1; month < 13; month ++)
+            {
+                int y = daysInMonth(month, yr);
+                for(int monthDays = 1; monthDays <= y; monthDays++)
+                {
+                    count += 1;
+                    if((monthDays == 1) && (Dayz.get(count) == "Sun"))
+                        numSuns += 1;
+                    if(count >= 7)
+                        count = 0;
+                }
+            }
+        }
+        System.out.println(numSuns - 2);
+		
+	}
+
+public static int daysInMonth(int month, int yr){
+    int d = 0;
+    if((month == 1) || (month == 3) || (month == 5) || (month == 7) ||
+    (month == 8) || (month == 10) || (month == 12))
+        d = 31;
+    else if((month == 4) || (month == 6) || (month == 9) || (month == 11))
+        d = 30;
+    else if((month == 2))
+    {
+        if(yr % 4 == 0)
+        {
+            if(yr % 100 == 0)
+            {
+                if(yr % 400 == 0)
+                    d = 29;
+                else
+                    d = 28;
+            } 
+            else
+                d = 29;
+        }
+        else
+            d = 28;
+    }
+    return d;
+}
+	
+	//solution: 171
+}
+
