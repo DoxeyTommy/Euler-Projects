@@ -75,7 +75,7 @@ public class main {
 						k = (number.get(x1_i).length()) + (number.get(x2_i).length());
 					}
 				}
-			} 
+			}
 			else if(str.length() == 3)
 			{
 				char x1 = str.charAt(0);
