@@ -34,7 +34,6 @@ public class main {
 		return numFactors * 2;
 	}
 	
-	
 	//solution: 76576500
 }
 
