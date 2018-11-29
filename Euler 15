@@ -6,7 +6,7 @@ public class main {
 
 	public static void main(String[] args) {
 		
-		int numMoves = 40;
+	int numMoves = 40;
         int rightMoves = 20;
          
         System.out.println(factorial(numMoves).divide(factorial(rightMoves).multiply(factorial(numMoves - rightMoves))));
