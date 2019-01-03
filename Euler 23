@@ -1,0 +1,105 @@
+package euler;
+
+import java.util.*;
+
+public class main {
+
+	public static void main(String[] args) {
+		
+		List<Integer> abundantNums = new ArrayList<Integer>(Abundant_numbers());
+        Collections.sort(abundantNums);
+        Collection<Integer> all_integers = new ArrayList<Integer>(All_integers());
+        Collection<Integer> abundant_sums = new ArrayList<Integer>(Abundant_sums(abundantNums));
+        all_integers.removeAll(abundant_sums);
+         
+        System.out.println(sum_Answer(all_integers));
+		
+    }
+	
+	public static Integer sum_Answer(Collection<Integer> list) {
+        Integer sum = 0;
+        if(list == null)
+        {
+            return 0;
+        }
+        for(Integer i:list)
+            sum = sum + i;
+        return sum;
+    }
+	
+	public static Set<Integer> Abundant_sums(List<Integer> abNums){
+        Set<Integer> Abundant_sums = new HashSet<Integer>();
+        for(int i = 0; i < abNums.size(); i++) 
+        {
+            Integer x = abNums.get(i);
+            for(int j = 0; j < abNums.size(); j++)
+            {
+                int y = abNums.get(j);
+                int check = x + y;
+                if(check < 28123)
+                {
+                    Abundant_sums.add(check);
+                }
+            }
+        }
+        return Abundant_sums;
+    }
+	
+	public static Set<Integer> All_integers(){
+        Set<Integer> All_integers = new HashSet<Integer>();
+        for(int i = 1; i < 28123; i++)
+        {
+            All_integers.add(i);
+        }
+        return All_integers;
+    }
+	
+	public static Set<Integer> Abundant_numbers(){
+        Set<Integer> Abundant_numbers = new HashSet<Integer>();
+        for(int i = 1; i <= 28123; i++)
+        {
+            List<Integer> x = proper_divisors(i);
+            if(sum(x) > i)
+            {
+                Abundant_numbers.add(i);
+            }
+        }
+        return Abundant_numbers;
+    }
+	
+	public static Integer sum(List<Integer> list) {
+        Integer sum = 0;
+        if(list == null)
+        {
+            return 0;
+        }
+        for(Integer i:list)
+            sum = sum + i;
+        return sum;
+   }
+	
+	public static List<Integer> proper_divisors(int number){
+        List<Integer> list = new ArrayList<Integer>();
+        if(number == 1)
+        {
+            list = null;
+            return list;
+        }
+        if(number == 2)
+        {
+            list.add(1);
+            return list;
+        }
+        for(int i = 1; i <= ((number / 2) + 1); i++)
+        {
+            if(number % i == 0)
+            {
+                list.add(i);
+            }
+        }
+        return list;
+    }
+	
+	//solution: 4179871
+}
+
