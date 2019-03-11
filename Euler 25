@@ -1,0 +1,31 @@
+package euler;
+
+import java.math.BigInteger;
+import java.util.ArrayList;
+
+public class main {
+
+	public static void main(String[] args) {
+		
+	    ArrayList<BigInteger> fibNumbers = new ArrayList<BigInteger>();
+	    boolean validNum = true;
+	    int x = 2;
+	    BigInteger temp = null;
+	    fibNumbers.add(BigInteger.valueOf(1));
+	    fibNumbers.add(BigInteger.valueOf(1));
+	    
+	    while (validNum == true)
+	    {
+	        temp = fibNumbers.get(x - 1).add(fibNumbers.get(x - 2));
+	        fibNumbers.add(temp);
+	        x++;
+	        if(temp.toString().length() >= 1000)
+	            validNum = false;
+	    } 
+	    System.out.println(fibNumbers.size());
+	    
+	}
+	
+	//solution: 4782
+}
+
