@@ -1,0 +1,29 @@
+package euler;
+
+public class main {
+
+	public static void main(String[] args) {
+		
+		int sum = 0;
+		for (int i = 3; i < 10000000; i++) 
+		{
+		if (i == factorialDigitSum(i))
+		    sum += i;
+		}
+		System.out.println(Integer.toString(sum));
+	}
+		 
+		 
+	private static int[] FACTORIAL = {1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880};
+		 
+	private static int factorialDigitSum(int x) {
+		int sum = 0;
+		while (x != 0) 
+		{
+			sum += FACTORIAL[x % 10];
+		    x /= 10;
+		}
+		return sum;
+	}
+	//solution: 40730
+}
