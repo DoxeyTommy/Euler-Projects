@@ -1,0 +1,37 @@
+package euler;
+
+public class main {
+
+	public static void main(String[] args) {
+		
+		int maxPerimeter = 0;
+		int maxTriangles = 0;
+		for (int i = 1; i <= 1000; i++) 
+		{
+			int triangles = numSolutions(i);
+			if (triangles > maxTriangles) {
+				maxTriangles = triangles;
+				maxPerimeter = i;
+			}
+		}
+		//(>'o')> <('u'<)
+		System.out.println(Integer.toString(maxPerimeter));
+ 	}
+		 
+		 
+	private static int numSolutions(int i) {
+		int count = 0;
+		for (int a = 1; a <= i; a++) 
+		{
+			for (int b = a; b <= i; b++) 
+			{
+				int c = i - a - b;
+				if (b <= c && a * a + b * b == c * c)
+					count++;
+			}
+		}
+		return count;
+	}
+		 
+	//solution: 840
+}
