@@ -1,0 +1,33 @@
+package euler;
+
+import java.util.Arrays;
+
+public class main {
+
+	public static void main(String[] args) {
+		
+		int max = -1;
+		for (int n = 2; n <= 9; n++) 
+		{
+			for (int i = 1; i < Library.pow(10, 9 / n); i++) 
+			{
+				String str = "";
+				for (int j = 1; j <= n; j++)
+					str += i * j;
+				if (isPandigital(str))
+					max = Math.max(Integer.parseInt(str), max);
+			}
+		}
+		System.out.println(Integer.toString(max));
+ 	}
+		 
+ 	private static boolean isPandigital(String s) {
+ 		if (s.length() != 9)
+ 			return false;
+ 		char[] cha = s.toCharArray();
+ 		Arrays.sort(cha);
+ 		return new String(cha).equals("123456789");
+ 	}
+		 
+	//solution: 932718654
+}
