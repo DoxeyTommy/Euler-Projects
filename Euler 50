@@ -1,0 +1,37 @@
+package euler;
+
+import java.util.Arrays;
+
+public class main {
+
+	private static final int LIMIT = Library.pow(10, 6);
+	
+	public static void main(String[] args) {
+		
+		boolean[] isPrime = Library.listPrimality(LIMIT);
+		int[] primes = Library.listPrimes(LIMIT);
+		  
+		long maxSum = 0;
+		int maxRun = -1;
+		for (int i = 0; i < primes.length; i++) 
+		{
+			int sum = 0;
+			for (int j = i; j < primes.length; j++) 
+			{
+				sum += primes[j];
+				if (sum > LIMIT)
+					break;
+				else if (j - i > maxRun && sum > maxSum && isPrime[sum])
+				{
+					maxSum = sum;
+					maxRun = j - i;
+				}
+			}
+		}
+		System.out.println(Long.toString(maxSum));
+	}
+		 
+		 
+	//solution: 997651
+
+}
