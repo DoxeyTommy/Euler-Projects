@@ -1,0 +1,25 @@
+package euler;
+
+import java.math.BigInteger;
+
+public class main {
+	
+	public static void main(String[] args) {
+		
+		BigInteger MILLION = BigInteger.TEN.pow(6);
+		int count = 0;
+		for (int n = 1; n <= 100; n++) 
+		{
+			for (int r = 0; r <= n; r++) 
+			{
+				if (Library.binomial(n, r).compareTo(MILLION) > 0)
+					count++;
+			}
+		}
+		System.out.println(Integer.toString(count));
+	}
+		 
+		 
+	//solution: 4075
+
+}
