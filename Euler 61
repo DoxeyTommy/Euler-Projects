@@ -1,0 +1,73 @@
+package euler;
+
+import java.util.HashSet;
+import java.util.Set;
+
+public class main {
+	
+	private static Set<Integer>[][] nums;
+	
+	public static void main(String[] args) {
+		
+		nums = new Set[9][100];
+		for (int i = 0; i < nums.length; i++) 
+		{
+			for (int j = 0; j < nums[i].length; j++)
+				nums[i][j] = new HashSet<>();
+		}
+		for (int sides = 3; sides <= 8; sides++) 
+		{
+			for (int n = 1; ; n++) 
+			{
+				int x = figurateNumber(sides, n);
+				if (x >= 10000)
+					break;
+				if (x >= 1000)
+					nums[sides][x / 100].add(x);
+			}
+		}
+		
+		for (int i = 10; i < 100; i++) 
+		{
+			for (int n : nums[3][i]) 
+			{
+				int temp = findSolutionSum(n, n, 1 << 3, n);
+				if (temp != -1)
+					System.out.println(Integer.toString(temp));
+			}
+		}
+		throw new AssertionError("No solution");
+	}
+	
+	private static int findSolutionSum(int begin, int current, int sidesUsed, int sum) {
+		if (sidesUsed == 0x1F8) 
+		{
+			if (current % 100 == begin / 100)
+				return sum;
+			
+		} 
+		else 
+		{
+			for (int sides = 4; sides <= 8; sides++) 
+			{
+				if (((sidesUsed >>> sides) & 1) != 0)
+					continue;
+				for (int n : nums[sides][current % 100]) 
+				{
+					int temp = findSolutionSum(begin, n, sidesUsed | (1 << sides), sum + n);
+					if (temp != -1)
+						return temp;
+				}
+			}
+		}
+		return -1;
+	}
+	
+	
+	private static int figurateNumber(int sides, int n) {
+		return n * ((sides - 2) * n - (sides - 4)) / 2;
+	}
+		 
+	//solution: 28684
+
+}
