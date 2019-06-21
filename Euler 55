@@ -1,0 +1,33 @@
+package euler;
+
+import java.math.BigInteger;
+
+public class main {
+	
+	public static void main(String[] args) {
+		
+		int count = 0;
+		for (int i = 0; i < 10000; i++)
+		{
+			if (isLychrel(i))
+				count++;
+		}
+		System.out.println(Integer.toString(count));
+	}
+	
+	
+	private static boolean isLychrel(int n) {
+		BigInteger temp = BigInteger.valueOf(n);
+		for (int i = 0; i < 49; i++)
+		{
+			temp = temp.add(new BigInteger(Library.reverse(temp.toString())));
+			if (Library.isPalindrome(temp.toString()))
+				return false;
+		}
+		return true;
+	}
+		 
+		 
+	//solution: 249
+
+}
