@@ -22,7 +22,6 @@ public class main {
 		System.out.println(Integer.toString(count));
 	}
 		 
-		 
 	//solution: 153
 
 }
