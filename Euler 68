@@ -1,0 +1,40 @@
+package euler;
+
+public class main {
+	
+	public static void main(String[] args) {
+		
+		int[] cell = new int[10];
+		for (int i = 0; i < cell.length; i++)
+			cell[i] = i + 1;
+		
+		String max = null;
+		do 
+		{
+			int sum = cell[0] + cell[5] + cell[6];
+			if (cell[1] + cell[6] + cell[7] != sum || cell[2] + cell[7] + cell[8] != sum || cell[3] + cell[8] + cell[9] != sum || cell[4] + cell[9] + cell[5] != sum)
+				continue;
+			
+			int minIndex = -1;
+			int minOuterCell = Integer.MAX_VALUE;
+			for (int i = 0; i < 5; i++) {
+				if (cell[i] < minOuterCell) {
+					minIndex = i;
+					minOuterCell = cell[i];
+				}
+			}
+			String str = "";
+			for (int i = 0; i < 5; i++)
+				str += "" + cell[(minIndex + i) % 5] + cell[(minIndex + i) % 5 + 5] + cell[(minIndex + i + 1) % 5 + 5];
+			if (str.length() == 16 && (max == null || s.compareTo(max) > 0))
+				max = str;
+		} while (Library.nextPermutation(cell));
+		
+		if (max == null)
+			throw new AssertionError();
+		System.out.println(max);
+	}
+		 
+	//solution: 6531031914842725
+
+}
