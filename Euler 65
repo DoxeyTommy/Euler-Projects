@@ -1,0 +1,40 @@
+package euler;
+
+import java.math.BigInteger;
+
+public class main {
+	
+	public static void main(String[] args) {
+		
+		BigInteger num = BigInteger.ONE;
+		BigInteger denom = BigInteger.ZERO;
+		for (int i = 99; i >= 0; i--) 
+		{
+			BigInteger temp = BigInteger.valueOf(fracTerm(i)).multiply(num).add(denom);
+			denom = num;
+			num = temp;
+		}
+		
+		int sum = 0;
+		while (!num.equals(BigInteger.ZERO)) 
+		{
+			BigInteger[] divrem = num.divideAndRemainder(BigInteger.TEN);
+			sum += divrem[1].intValue();
+			num = divrem[0];
+		}
+		System.out.println(Integer.toString(sum));
+	}
+	
+	
+	private static int fracTerm(int i) {
+		if (i == 0)
+			return 2;
+		else if (i % 3 == 2)
+			return i / 3 * 2 + 2;
+		else
+			return 1;
+	}
+		 
+	//solution: 272
+
+}
