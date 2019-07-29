@@ -1,0 +1,28 @@
+package euler;
+
+public class main {
+	
+	private static final int LIMIT = 1000000;
+	
+	public static void main(String[] args) {
+		
+		int maxN = 0;
+		int maxD = 1;
+		for (int d = 1; d <= LIMIT; d++) 
+		{
+			int n = d * 3 / 7;
+			if (d % 7 == 0)
+				n--;
+			if ((long)n * maxD > (long)maxN * d) 
+			{
+				maxN = n;
+				maxD = d;
+			}
+		}
+		
+		System.out.println(Integer.toString(maxN));
+	}
+		 
+	//solution: 428570
+
+}
