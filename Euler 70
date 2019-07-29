@@ -1,0 +1,42 @@
+package euler;
+
+import java.util.Arrays;
+
+public class main {
+	
+	private static final int LIMIT = Library.pow(10, 7);
+	
+	public static void main(String[] args) {
+		
+		int minNum = 1;
+		int minDen = 0;
+		int[] totients = Library.listTotients(LIMIT - 1);
+		for (int i = 2; i < totients.length; i++)
+		{
+			int cur = totients[i];
+			if ((long)i * minDen < (long)minNum * cur && compare(i, cur)) 
+			{
+				minNum = i;
+				minDen = cur;
+			}
+		}
+		if (minDen == 0)
+			throw new RuntimeException("Not found");
+		
+		System.out.println(Integer.toString(minNum));
+	}
+	
+	
+	private static boolean compare(int x, int y) {
+		char[] xDigits = Integer.toString(x).toCharArray();
+		Arrays.sort(xDigits);
+		
+		char[] yDigits = Integer.toString(y).toCharArray();
+		Arrays.sort(yDigits);
+		
+		return Arrays.equals(xDigits, yDigits);
+	}
+		 
+	//solution: 8319823
+
+}
