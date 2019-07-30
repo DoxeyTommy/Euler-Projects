@@ -1,0 +1,44 @@
+package euler;
+
+import java.util.HashSet;
+import java.util.Set;
+
+public class main {
+	
+	private static final int LIMIT = Library.pow(10, 6);
+	
+	public static void main(String[] args) {
+		
+		int num = 0;
+		for (int i = 0; i < LIMIT; i++) 
+		{
+			if (chainLength(i) == 60)
+				num++;
+		}
+		
+		System.out.println(Integer.toString(num));
+	}
+	
+	
+	private static int chainLength(int n) {
+		Set<Integer> set = new HashSet<>();
+		while (true) 
+		{
+			if (!set.add(n))
+				return set.size();
+			n = toFactorial(n);
+		}
+	}
+	
+	private static int[] FACTORIALS = {1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880};
+	
+	private static int toFactorial(int n) {
+		int sum = 0;
+		for (; n != 0; n /= 10)
+			sum += FACTORIALS[n % 10];
+		return sum;
+	}
+		 
+	//solution: 402
+
+}
