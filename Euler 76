@@ -1,0 +1,32 @@
+package euler;
+
+import java.math.BigInteger;
+
+public class main {
+	
+	public static void main(String[] args) {
+		
+		int x = 100;
+		int y = 1;
+		
+		BigInteger[][] table = new BigInteger[x + 1][x + 1];
+		for (int i = 0; i <= x; i++)
+		{
+			for (int j = x; j >= 0; j--) 
+			{
+				if (i == j)
+					table[i][j] = BigInteger.ONE;
+				else if (i < j)
+					table[i][j] = BigInteger.ZERO;
+				else if (j == 0)
+					table[i][j] = table[i][j + 1];
+				else
+					table[i][j] = table[i][j + 1].add(table[i - j][j]);
+			}
+		}
+		System.out.println((table[x][y]).subtract(BigInteger.ONE));
+	}
+		 
+	//solution: 190569291
+
+}
