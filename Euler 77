@@ -1,0 +1,40 @@
+package euler;
+
+public class main {
+	
+	private static final int LIMIT = 5000;
+	
+	public static void main(String[] args) {
+		
+		for (int i = 1; ; i *= 2) 
+		{
+			int check = isSumPrimes(i, LIMIT);
+			if (check != -1)
+			{
+				System.out.println(Integer.toString(check));
+				break;
+			}
+		}
+	}
+	
+	private static int isSumPrimes(int n, int limit) {
+		int[] arr = new int[n];
+		arr[0] = 1;
+		for (int i = 0; i < arr.length; i++) 
+		{
+			if (!Library.isPrime(i))
+				continue;
+			for (int j = i; j < arr.length; j++)
+				arr[j] += arr[j - i];
+		}
+		for (int i = 0; i < n; i++)
+		{
+			if (arr[i] > limit)
+				return i;
+		}
+		return -1;
+	}
+		 
+	//solution: 71
+
+}
