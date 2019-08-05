@@ -1,0 +1,61 @@
+package euler;
+
+public class main {
+	
+	private static String[] LOGINS = {"319", "680", "180", "690", "129", "620", "762", "689", "762", "318", "368", "710", "720", "710", "629", "168", "160", "689", "716", "731", "736", "729", "316", "729", "729", "710", "769", "290", "719", "680", "318", "389", "162", "289", "162", "718", "729", "319", "790", "680", "890", "362", "319", "760", "316", "729", "380", "319", "728", "716"};
+	
+	private static char[] PACKEDLOGINS;
+	
+	public static void main(String[] args) {
+		
+		PACKEDLOGINS = new char[LOGINS.length * 3];
+		for (int i = 0; i < PACKEDLOGINS.length; i++)
+			PACKEDLOGINS[i] = LOGINS[i / 3].charAt(i % 3);
+		
+		outerloop:
+		for (int i = 3; i <= 10; i++) 
+		{
+			int end = Library.pow(10, i);
+			for (int j = 0; j < end; j++) 
+			{
+				char[] guessChars = toChars(j, i);
+				if (isConsistent(guessChars))
+				{
+					System.out.println(new String(guessChars));
+					break outerloop;
+				}
+			}
+		}
+	}
+	
+	
+	private static boolean isConsistent(char[] guess) {
+		for (int i = 0; i < PACKEDLOGINS.length; i += 3) 
+		{
+			int j = 0;
+			for (int k = 0; k < guess.length && j < 3; k++) 
+			{
+				if (guess[k] == PACKEDLOGINS[i + j])
+					j++;
+			}
+			if (j < 3)
+				return false;
+		}
+		return true;
+	}
+	
+	private static char[] toChars(int x, int length) {
+		char[] result = new char[length];
+		int i = 0;
+		for (; i < result.length; i++, x /= 10)
+			result[i] = (char)('0' + (x % 10));
+		if (x != 0)
+			throw new IllegalArgumentException();
+		for (; i < result.length; i++)
+			result[i] = '0';
+		return result;
+	}
+		 
+	//solution: 73162890
+
+}
