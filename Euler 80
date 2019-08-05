@@ -1,0 +1,55 @@
+package euler;
+
+import java.math.BigInteger;
+
+public class main {
+	
+	public static void main(String[] args) {
+		
+		int sum = 0;
+		for (int i = 1; i <= 100; i++) 
+		{
+			BigInteger x = BigInteger.valueOf(i);
+			x = x.multiply(BigInteger.TEN.pow(100 * 2));
+			BigInteger y = sqrt(x);
+			if (!y.multiply(y).equals(x)) 
+			{
+				String s = y.toString().substring(0, 100);
+				for (int j = 0; j < s.length(); j++)
+					sum += s.charAt(j) - '0';
+			}
+		}
+		System.out.println(Integer.toString(sum));
+	}
+	
+	
+	private static BigInteger sqrt(BigInteger x) {
+		int i = 0;
+		while (BigInteger.TEN.pow(i * 2).compareTo(x) <= 0)
+			i++;
+		
+		BigInteger y = BigInteger.ZERO;
+		for (; i >= 0; i--) 
+		{
+			int j;
+			BigInteger z = null;
+			for (j = 9; j >= 0; j--) 
+			{
+				BigInteger temp = BigInteger.valueOf(j).multiply(BigInteger.TEN.pow(i));
+				z = y.shiftLeft(1).add(temp).multiply(temp);
+				if (z.compareTo(x) <= 0)
+					break;
+			}
+			if (j < 0)
+				throw new AssertionError();
+			
+			x = x.subtract(z);
+			y = y.add(BigInteger.valueOf(j).multiply(BigInteger.TEN.pow(i)));
+		}
+		
+		return y;
+	}
+		 
+	//solution: 40886
+
+}
