@@ -1,0 +1,44 @@
+package euler;
+
+import java.util.HashSet;
+import java.util.Set;
+
+public class main {
+	
+	private static final int LIMIT = 50000000;
+	
+	public static void main(String[] args) {
+		
+		int[] primes = Library.listPrimes(Library.sqrt(LIMIT));
+		
+		Set<Integer> sums = new HashSet<>();
+		sums.add(0);
+		
+		for (int i = 2; i <= 4; i++) 
+		{
+			Set<Integer> newSet = new HashSet<>();
+			for (int x : primes) 
+			{
+				long y = 1;
+				for (int j = 0; j < i; j++)
+					y *= x;
+				
+				if (y > LIMIT)
+					break;
+				
+				int z = (int)y;
+				for (int k : sums) 
+				{
+					if (k + z <= LIMIT)
+						newSet.add(k + z);
+				}
+			}
+			sums = newSet;
+		}
+		
+		System.out.println(Integer.toString(sums.size()));
+	}
+		 
+	//solution: 1097343
+
+}
