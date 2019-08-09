@@ -1,0 +1,35 @@
+package euler;
+
+public class main {
+	
+	private static final int LIMIT = 2000000;
+	
+	public static void main(String[] args) {
+		
+		int minDiff = Integer.MAX_VALUE;
+		int maxArea = -1;
+		int sqrt = Library.sqrt(LIMIT);
+		
+		for (int w = 1; w <= sqrt; w++) 
+		{
+			for (int h = 1; h <= sqrt; h++) 
+			{
+				int diff = Math.abs(numberOfRectangles(w, h) - LIMIT);
+				if (diff < minDiff) 
+				{
+					minDiff = diff;
+					maxArea = w * h;
+				}
+			}
+		}
+		System.out.println(Integer.toString(maxArea));
+	}
+	
+	
+	private static int numberOfRectangles(int x, int y) {
+		return (x + 1) * x * (y + 1) * y / 4;
+	}
+		 
+	//solution: 2772
+
+}
