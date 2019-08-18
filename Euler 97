@@ -1,0 +1,19 @@
+package euler;
+
+import java.math.BigInteger;
+
+public class main {
+	
+	public static void main(String[] args) {
+		
+		BigInteger bigI = BigInteger.TEN.pow(10);
+		BigInteger sum = BigInteger.valueOf(2).modPow(BigInteger.valueOf(7830457), bigI);
+		sum = sum.multiply(BigInteger.valueOf(28433)).mod(bigI);
+		sum = sum.add(BigInteger.ONE).mod(bigI);
+		
+		System.out.println(String.format("%010d", sum));
+	}
+		 
+	//solution: 8739992577
+
+}
