@@ -1,0 +1,35 @@
+package euler;
+
+import java.math.BigInteger;
+
+public class main {
+	
+	public static void main(String[] args) {
+		
+		BigInteger three = BigInteger.valueOf(3);
+		BigInteger one = BigInteger.valueOf(1);
+		
+		BigInteger x = three;
+		BigInteger y = one;
+		while (true) 
+		{
+			BigInteger temp = Library.sqrt(y.multiply(y).multiply(BigInteger.valueOf(8)).add(BigInteger.ONE));
+			if (temp.testBit(0)) 
+			{
+				BigInteger blue = temp.add(BigInteger.ONE).divide(BigInteger.valueOf(2)).add(y);
+				if (blue.add(y).compareTo(BigInteger.TEN.pow(12)) > 0)
+				{
+					System.out.println(blue.toString());
+					break;
+				}
+			}
+			BigInteger nextx = x.multiply(three).add(y.multiply(one).multiply(BigInteger.valueOf(8)));
+			BigInteger nexty = x.multiply(one).add(y.multiply(three));
+			x = nextx;
+			y = nexty;
+		}
+	}
+		 
+	//solution: 756872327473
+
+}
