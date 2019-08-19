@@ -1,0 +1,40 @@
+package euler;
+
+public class main {
+	
+	public static void main(String[] args) {
+		
+		for (int i = 1; ; i++) 
+		{
+			if ((countDivisorsSquared(i) + 1) / 2 > 1000)
+			{
+				System.out.println(Integer.toString(i));
+				break;
+			}
+		}
+	}
+	
+	private static int countDivisorsSquared(int n) {
+		int count = 1;
+		for (int i = 2, limit = Library.sqrt(n); i <= limit; i++) 
+		{
+			if (n % i == 0) 
+			{
+				int j = 0;
+				do 
+				{
+					n /= i;
+					j++;
+				} while (n % i == 0);
+				count *= j * 2 + 1;
+				limit = Library.sqrt(n);
+			}
+		}
+		if (n != 1)
+			count *= 3;
+		return count;
+	}
+		 
+	//solution: 180180
+
+}
