@@ -1,0 +1,46 @@
+package euler;
+
+public class main {
+	
+	public static void main(String[] args) {
+		
+		int count = 0;
+		for (int i = 1; ; i++) 
+		{
+			if (isBouncy(i))
+				count++;
+			if (count * 100 == i * 99)
+			{
+				System.out.println(Integer.toString(i));
+				break;
+			}
+		}
+	}
+	
+	
+	private static boolean isBouncy(int n) {
+		if (n < 100)
+			return false;
+		else 
+		{
+			boolean nonincreasing = true;
+			boolean nondecreasing = true;
+			int lastDigit = n % 10;
+			n /= 10;
+			while (n != 0) 
+			{
+				int digit = n % 10;
+				if (digit > lastDigit)
+					nondecreasing = false;
+				else if (digit < lastDigit)
+					nonincreasing = false;
+				lastDigit = digit;
+				n /= 10;
+			}
+			return !nonincreasing && !nondecreasing;
+		}
+	}
+		 
+	//solution: 1587000
+
+}
