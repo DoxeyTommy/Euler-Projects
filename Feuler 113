@@ -1,0 +1,19 @@
+package euler;
+
+import java.math.BigInteger;
+
+public class main {
+	
+	private static final int LENGTH = 100;
+	
+	public static void main(String[] args) {
+		
+		BigInteger increasing = Library.binomial(LENGTH + 9, 9).subtract(BigInteger.ONE);
+		BigInteger decreasing = Library.binomial(LENGTH + 10, 10).subtract(BigInteger.valueOf(LENGTH + 1));
+		BigInteger value = BigInteger.valueOf(LENGTH * 9);
+		System.out.println(increasing.add(decreasing).subtract(value).toString());
+	}
+		 
+	//solution: 51161058134250
+
+}
