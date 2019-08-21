@@ -1,0 +1,27 @@
+package euler;
+
+public class main {
+	
+	private static final int LENGTH = 50;
+	
+	public static void main(String[] args) {
+		
+		System.out.println(Long.toString(count(LENGTH, 2) + count(LENGTH, 3) + count(LENGTH, 4)));
+	}
+	
+	
+	private static long count(int length, int x) {
+		long[] arr = new long[length + 1];
+		arr[0] = 1;
+		for (int i = 1; i <= length; i++) 
+		{
+			arr[i] += arr[i - 1];
+			if (i >= x)
+				arr[i] += arr[i - x];
+		}
+		return arr[length] - 1;
+	}
+		 
+	//solution: 20492570929
+
+}
